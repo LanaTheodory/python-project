@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+        <link rel="stylesheet" href="freelancer.css">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Freelancer page {{first name }}</title>
+</head>
+
+<body>
+    <div class="container-lg" style="margin: 0 auto; background-color: rgb(100, 138, 241); width: 1000px;height: 800px; ">
+        <nav class="navbar navbar-dark bg-dark" style="display:flex; justify-content: space-between; margin: 15px;">
+            <h2 style="margin: 15px;color: bisque;"> Welcome {{first name}}{{last name}}</h2>
+            <div class="class1" style="margin: 15px;">
+                <p><a class="link-primary" href="/wallfeed.html">WallFeed</a> |<a class="link-primary"
+                        href="/communtity">Communtiy</a> | <a class="link-danger" href="/logout">Logout</a> </p>
+            </div>
+        </nav>
+        <hr><br>
+        <section>
+            {%for loop....%}
+            <p>Massage From {{user.first}}{{user.last}}</p>
+            <p>{{Massage}} Fake Fake Fake Fake</p>
+            <form style="width: 500px;" action="/Add-Reply">
+                <div class="input-group mb-3">
+                    <button class="btn btn-outline-secondary" type="submit" id="Comment-addon1">Reply</button>
+                    <input  type="text" name="Reply" class="form-control" 
+                        aria-label="Example text with button addon" aria-describedby="button-addon1">
+                </div>
+            </form>
+            {%endfor%}
+
+
+
+
+        </section>
+
+
+    </div>
+</body>
+
+</html>

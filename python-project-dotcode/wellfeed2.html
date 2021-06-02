@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="stylesheet" href="c.css">
+    <style>
+        html,
+        body,
+        h1,
+        h2,
+        h3,
+        h4,
+        h5 {
+            font-family: "Open Sans", sans-serif
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body class="w3-theme-l5">
+
+    <div class="con" style="margin: 0 auto; height: auto;width: 1111px;">
+        <header style="display:flex; justify-content: space-between; margin: 15px;">
+            <h2> Welcome {{first name}}{{last name}}</h2>
+            <div class="class1">
+                <p><a class="link-primary" href="/communtity">Communtiy</a> | <a class="link-danger"
+                        href="/logout">Logout</a> </p>
+            </div>
+        </header>
+        <hr><br>
+        <!-- Middle Column -->
+        <div class="w3-col m7">
+            <form action="/Add-post" method="POST">
+                <div class="w3-row-padding">
+                    <div class="w3-col m12">
+                        <div class="w3-card w3-round w3-white">
+                            <div class="w3-container w3-padding">
+                                <h6 class="w3-opacity">write what your problem</h6>
+                                <p contenteditable="true" class="w3-border w3-padding"></p>
+                                <button type="submit" class="w3-button w3-theme"><i class="fa fa-pencil"></i>
+                                     Post</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            {%for msg in all_massges%}
+            <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
+                <span class="w3-right w3-opacity">{{msg.update_at}}</span>
+                <h4>{{user.first}}{{user.last}}</h4><br>
+                <hr class="w3-clear">
+                <!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
+                    et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                    aliquip ex ea commodo consequat.</p> -->
+                <p>{{msg.Massage}}Fake Fake Fake Fake Fake</p>
+                <div class="w3-row-padding" style="margin:0 -16px">
+
+                </div>
+                <div class="input-group mb-3">
+                    <form action="Add-comment" method="POST">
+
+                        <input  style="width: 400px; " type="text" name="Comment" class="form-control"
+                            aria-label="Example text with button addon" aria-describedby="button-addon1">
+                        <button style="margin: 10px;" class="btn btn-outline-secondary w3-button w3-theme" type="submit"
+                            id="Comment-addon1">Comment</button>
+                    </form>
+                </div>
+            </div>
+            {%endfor%}
+            <!-- <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
+
+                <span class="w3-right w3-opacity">{{msg.update_at}}</span>
+                <h4>{{user.first}}{{user.last}}</h4><br>
+                <hr class="w3-clear">
+                <p>Have you seen this?</p>
+
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
+                    et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                    aliquip ex ea commodo consequat.</p>
+                <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i>
+                     Like</button>
+                <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i>
+                     Comment</button>
+            </div> -->
+
+            <!-- End Middle Column -->
+
+        </div>
+</body>
+
+</html>
