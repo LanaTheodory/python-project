@@ -39,18 +39,15 @@ import re
 
 
 
-class Client(models.Model) :
-    first_name = models.CharField(max_length=200)
-    last_name = models.CharField(max_length=200)
-    email= models.CharField(max_length=200)
-    password = models.CharField(max_length=200)
-    question = models.TextField()
-    gender = models.CharField(max_length=10)
+class Role(models.Model) :
+    role = models.IntegerField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
-    # objects = BlogManager()
 
-class Freelancer(models.Model) :
+
+
+
+class User(models.Model) :
     first_name = models.CharField(max_length=200)
     last_name = models.CharField(max_length=200)
     email= models.CharField(max_length=200)
@@ -60,40 +57,31 @@ class Freelancer(models.Model) :
     skill_level = models.CharField(max_length=50)
     education = models.TextField()
     gender = models.CharField(max_length=10) #shoud we include it?!
-    client = models.ManyToManyField(Client, related_name='deals_with') # joint table 
+    role = models.ForeignKey(Role, related_name="user", on_delete=models.CASCADE )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
     # objects = BlogManager()
 
 class Message(models.Model) :
     message = models.TextField()
-    client = models.ForeignKey(Client, related_name="client_message", on_delete=models.CASCADE )
-    freelancer = models.ForeignKey(Freelancer, related_name="freelancer_message", on_delete=models.CASCADE )
+    user_message = models.ForeignKey(User, related_name="message_user", on_delete=models.CASCADE )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
     # objects = BlogManager()
 
 class Post(models.Model) :
     post = models.TextField()
-    client = models.ForeignKey(Client, related_name="client_post", on_delete=models.CASCADE )
+    user_post = models.ForeignKey(User, related_name="post_user", on_delete=models.CASCADE )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
     # objects = BlogManager()
 
 class Comment(models.Model) :
     comment = models.TextField()
-    post = models.ForeignKey(Post, related_name="comment_which_post", on_delete=models.CASCADE) #we can change the related name if its not clear
-    client = models.ForeignKey(Client, related_name="comment_which_client", on_delete=models.CASCADE, null= True) #the comment is for this client OR this freelancer
-    freelancer = models.ForeignKey(Freelancer, related_name="comment_which_freelancer", on_delete=models.CASCADE, null= True) #do we add the freelancer here? 
+    post = models.ForeignKey(Post, related_name="comment_post", on_delete=models.CASCADE) #we can change the related name if its not clear
+    user_comment = models.ForeignKey(User, related_name="comment_user", on_delete=models.CASCADE )
+    reply = models.IntegerField(null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
     # objects = BlogManager()
 
-class Reply(models.Model) :
-    reply = models.TextField()
-    comment = models.ForeignKey(Comment, related_name="reply_which_comment", on_delete=models.CASCADE)
-    client = models.ForeignKey(Client, related_name="reply_which_client", on_delete=models.CASCADE) #the reply is for this client OR this freelancer
-    freelancer = models.ForeignKey(Freelancer, related_name="reply_which_freelancer", on_delete=models.CASCADE) #do we add the freelancer here? 
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now_add=True)
-    # objects = BlogManager()
