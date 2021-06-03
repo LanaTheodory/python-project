@@ -2,7 +2,6 @@ from django.db import models
 from django.db.models.base import Model
 from django.shortcuts import render
 from django.db import models
-import bcrypt
 import re
 from django.contrib import messages
 
