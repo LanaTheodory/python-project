@@ -1,0 +1,5 @@
+ 
+ajax where
+at least 3 responsive webpages
+
+add rating feild to the freelancer <maybe skip>
