@@ -12,6 +12,8 @@ class Message(models.Model) :
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
     # objects = BlogManager()
+    def __str__(self):
+        return self.Text
 
 class Post(models.Model) :
     post = models.TextField()
@@ -19,6 +21,8 @@ class Post(models.Model) :
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
     # objects = BlogManager()
+    def __str__(self):
+        return self.Text
 
 class Comment(models.Model) :
     Text = models.TextField()
@@ -27,6 +31,8 @@ class Comment(models.Model) :
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
     # objects = BlogManager()
+    def __str__(self):
+        return self.Text
 
 
 class Reply(models.Model) :
@@ -36,6 +42,8 @@ class Reply(models.Model) :
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
     # objects = BlogManager()
+    def __str__(self):
+        return self.Text
 
 class Problem(models.Model) :
     problem = models.TextField()
@@ -43,13 +51,15 @@ class Problem(models.Model) :
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
     # objects = BlogManager()
+    def __str__(self):
+        return self.Text
 
 
 
 
 def createcomment(postData,user,post):
-    Comment.objects.create(Text=postData['text'],post=post,user_comment=user)
-    pass
+    return Comment.objects.create(Text=postData['comment2'],post=Post.objects.get(id = post), user_comment = User.objects.get(id = user))
+    
     
 def createpost(postData,user):
     post=Post.objects.create(post=postData['post'],user_post=User.objects.get(id=user))

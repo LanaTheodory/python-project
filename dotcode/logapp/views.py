@@ -7,6 +7,8 @@ from django.contrib import messages
 
 
 def index(request):
+    if "user_id" in request.session:
+        return redirect('/main/community')
     return render(request, "index.html")
 
 

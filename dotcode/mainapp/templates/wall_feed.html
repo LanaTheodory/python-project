@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  {% load static %}
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/Wall.css'%}">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wallfeed</title>
+</head>
+
+<body>
+  <header style="display:flex; justify-content: space-between; margin: 15px; position: sticky;">
+            <h2><a href="/log" class="logo link color-main">DotCode</a></h2>
+            <div class="class1">
+                <p> |<a class="link-primary"
+                        href="/main/community">Communtiy</a> | 				<a href="/main/freelancer_profile/{{request.session.user_id}}" class="link color-main mx-15">Profile</a>
+                        | <a class="link-danger" href="/log/logout">Logout</a> </p>
+            </div>
+        </header>
+<div class="container bootdey">
+<div class="col-md-12 bootstrap snippets">
+<div class="panel">
+  <div class="panel-body">
+    <form action="/main/create_post/{{request.session.user_id}}" method="POST">
+      {% csrf_token %}
+        <textarea class="form-control" rows="2" name="write_post" placeholder="What are you thinking?"></textarea>
+        <div class="mar-top clearfix">
+          <input class="btn btn-sm btn-primary pull-right" type="submit" value="Share">
+        </div>
+    </form>
+      </div>
+    </div>
+    <div class="panel">
+    <div class="panel-body">
+    <!-- Newsfeed Content -->
+    <!--===================================================-->
+    <div class="media-block">
+        {% for this_post in all_posts %}
+      <a class="media-left" href="#"><img class="img-circle img-sm" alt="Profile Picture" src="https://bootdey.com/img/Content/avatar/avatar1.png"></a>
+      <div class="media-body">
+        <div class="mar-btm">
+          <a href="#" class="btn-link text-semibold media-heading box-inline">{{this_post.user_post.first_name}}</a>
+          <p class="text-muted text-sm"><i class="fa fa-mobile fa-lg"></i> {{this_post.created_at}}</p>
+        </div>
+        <p>{{ this_post.post }}</p>
+        {% for comment in this_post.comment_post.all %}
+        <div class="pad-ver">
+          <a class="media-left" href="#"><img class="img-circle img-sm" alt="Profile Picture" src="https://bootdey.com/img/Content/avatar/avatar1.png"></a>
+            <a href="#" class="btn-link text-semibold media-heading box-inline">{{comment.user_comment.first_name}}</a>
+            <p class="text-muted text-sm"><i class="fa fa-mobile fa-lg"></i> {{comment.created_at}}</p>
+        </div>
+        <p>{{ comment.Text }}</p>
+
+        {% for x in comment.reply_comment.all %}
+        <p>{{ x.Text }}</p>
+        {% endfor %}
+         <form action="/main/create_reply/{{ comment.id }}" method="POST">
+          {% csrf_token %}
+          <input type="text" name="reply2" required>
+          <input type="submit" value="reply">
+        </form>
+        {% endfor %}
+        <form action="/main/create_comment/{{request.session.user_id}}/{{ this_post.id }}" method="POST">
+          {% csrf_token %}
+          <input type="text" name="comment2" placeholder="Write your comment" required>
+          <input type="submit" value="comment">
+        </form>
+        
+        <hr>
+       
+    </div>
+    {% endfor %}
+</body>
+
+</html> 

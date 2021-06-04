@@ -15,7 +15,14 @@ for loop for lancers and clients sections
 if statement in community
 form for the client's projects if the client logged in 
 
-if statement in profile page
+if statement in profile page:
+1-if the client visited the freelancer's profile via community page
+2-if the freelancer visited the client's profile via community page
+3- if the logged in user (client) opened his/her profile
+<for loop for the messages (sender/receiver)>
+4- if the logged in user (freelancer) opened his/her profile
+<for loop for the messages (sender/receiver)>
+
 
 wallfeed page:
 href navbar
@@ -24,6 +31,14 @@ nested forloop
 1-for loop for comments
 2- for loop posts
 3- for for replies
+
+
+
+--------------------------------------------------
+if we had time:
+rating
+sort freelancers 
+regex (safe community)
 
 
 
