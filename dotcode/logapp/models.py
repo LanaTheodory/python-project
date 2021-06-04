@@ -53,11 +53,7 @@ class User(models.Model) :
     email= models.CharField(max_length=200)
     password = models.CharField(max_length=200)
     gender = models.CharField(max_length=10) 
-    # description = models.TextField()
-    # language = models.CharField(max_length=50)
-    # education = models.TextField()
     role = models.ForeignKey(Role, related_name="user", on_delete=models.CASCADE )
-    # lancer_info= models.OneToOneField(User,on_delete=models.CASCADE, primary_key=True,)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
     objects = BlogManager()
@@ -94,8 +90,8 @@ def lancer_info(postData, user_id):
     education=postData["edu"],language=postData["lan"], lancer = User.objects.get(id= user_id))
     return lancer
 
-# def thislancer(id):
-#     return Lancer_info.objects.get(id=id)
+def thislancer(id):
+    return User.objects.get(id=id)
 
 
 def log(email):
@@ -104,5 +100,8 @@ def log(email):
         return user[0]
     else:
         return None
+
+def get_user(id):
+    return User.objects.get(id=id)
 
 

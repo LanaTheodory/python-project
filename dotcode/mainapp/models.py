@@ -1,6 +1,7 @@
 from typing import Text
 from django.core.checks import messages
 from django.db import models
+from logapp import models
 from logapp.models import *
 
 
@@ -36,17 +37,41 @@ class Reply(models.Model) :
     updated_at = models.DateTimeField(auto_now_add=True)
     # objects = BlogManager()
 
+class Problem(models.Model) :
+    problem = models.TextField()
+    user_problem = models.ForeignKey(User, related_name="problem_user", on_delete=models.CASCADE )
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now_add=True)
+    # objects = BlogManager()
 
-def create_comment(postData,user,post):
+
+
+
+def createcomment(postData,user,post):
     Comment.objects.create(Text=postData['text'],post=post,user_comment=user)
     pass
     
-def create_post(postData,user):
+def createpost(postData,user):
     post=Post.objects.create(post=postData['post'],user_post=User.objects.get(id=user))
     return post
 
 
-def create_message(postData,user):#ask  about reply that mean (msg to msg ) 
+def createmessage(postData,user):#ask  about reply that mean (msg to msg ) 
     msg=Message.objects.create(message=postData['massage'], user_message=User.objects.get(id=user))
     return msg
     
+def createproblem(postData,user):
+    return Problem.objects.create(problem = postData['problem'] , user_problem = User.objects.get(id=user))
+
+def allproblems():
+    return Problem.objects.all()
+
+def get_freelancers():
+    
+    x = Role.objects.all()
+    
+    return x
+def all_users():
+
+    return User.objects.all()
+

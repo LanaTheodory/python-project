@@ -1,14 +1,33 @@
- 
-ajax where
-at least 3 responsive webpages
-
-add rating feild to the freelancer <maybe skip>
-
----------------------------------------------------
 
 
-registration lancer
+Ajax/jquery
 
-wallfeed
+wallfeed connect
 
-login/reg
+login/reg -> invalid salt (sign in)
+
+superuser (admin)
+
+
+
+community page <css>?
+for loop for lancers and clients sections
+if statement in community
+form for the client's projects if the client logged in 
+
+if statement in profile page
+
+wallfeed page:
+href navbar
+forms for comments/replys/post(with if statement
+nested forloop
+1-for loop for comments
+2- for loop posts
+3- for for replies
+
+
+
+
+
+
+
