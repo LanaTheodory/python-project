@@ -6,7 +6,8 @@ from logapp.models import *
 
 class Message(models.Model) :
     message = models.TextField()
-    user_message = models.ForeignKey(User, related_name="message_user", on_delete=models.CASCADE )
+    sender = models.ForeignKey(User, related_name="message_sender", on_delete=models.CASCADE )
+    receiver = models.ForeignKey(User, related_name="message_receiver", on_delete=models.CASCADE )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
     # objects = BlogManager()
@@ -20,9 +21,17 @@ class Post(models.Model) :
 
 class Comment(models.Model) :
     Text = models.TextField()
-    post = models.ForeignKey(Post, related_name="comment_post", on_delete=models.CASCADE) #we can change the related name if its not clear
+    post = models.ForeignKey(Post, related_name="comment_post", on_delete=models.CASCADE) 
     user_comment = models.ForeignKey(User, related_name="comment_user", on_delete=models.CASCADE )
-    reply = models.IntegerField(null=True)# note
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now_add=True)
+    # objects = BlogManager()
+
+
+class Reply(models.Model) :
+    Text = models.TextField()
+    comment = models.ForeignKey(Comment, related_name="reply_comment", on_delete=models.CASCADE) #we can change the related name if its not clear
+    user_reply = models.ForeignKey(User, related_name="reply_user", on_delete=models.CASCADE )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
     # objects = BlogManager()

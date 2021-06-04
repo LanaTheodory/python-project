@@ -134,11 +134,11 @@
             <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">Sign Up</label>
             <div class="login-form">
                 <div class="sign-in-htm">
-                    <form action="/login" method="POST">
+                    <form action="/log/login" method="POST">
                         {% csrf_token %}
                         <div class="group">
                             <label for="user" class="label">Email</label>
-                            <input id="user" name="Email" type="text" class="input" required>
+                            <input id="user" name="email" type="email" class="input" required>
                         </div>
                         <div class="group">
                             <label for="pass" class="label">Password</label>
@@ -171,21 +171,22 @@
 			                    <a href="#forgot">Forgot Password?</a>
 			                </div> -->
                 </div>
+ <!-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX -->
                 <div class="sign-up-htm">
-                    <form action="/create_user" method="POST">
+                    <form action="log/create_user" method="POST">
                         {% csrf_token %}
 
                         <div class="group">
                             <label for="user" class="label">First name</label>
-                            <input id="user" name="first_signup" type="text" class="input" required>
+                            <input id="user" name="first" type="text" class="input" required>
                         </div>
                         <div class="group">
                             <label for="user" class="label">Last name</label>
-                            <input id="user" name="last_signup" type="text" class="input" required>
+                            <input id="user" name="last" type="text" class="input" required>
                         </div>
                         <div class="group">
                             <label for="pass" class="label">Email Address</label>
-                            <input id="pass" name="email_signup" type="email" class="input">
+                            <input id="pass" name="email" type="email" class="input">
                         </div>
                         <div class="group">
                             <label for="pass" class="label">Password</label>
@@ -209,9 +210,9 @@
                         </div>
                         <div class="group">
                             <label for="Client" class="label">Sign up as a</label>
-                            <input type="radio" id="Client" name="Client" value="Client">
+                            <input type="radio" id="Client" name="role" value="client">
                             <label for="male">Client</label>
-                            <input type="radio" id="Freelancer" name="Freelancer" value="Freelancer">
+                            <input type="radio" id="Freelancer" name="role" value="freelancer">
                             <label for="Freelancer">Freelancer</label>
                         </div>
 

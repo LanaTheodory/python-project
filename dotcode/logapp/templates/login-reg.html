@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	{% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <title>Login and registration</title>
+</head>
+<body>
+    
+<div class="login-wrap">
+	<div class="login-html">
+        <div>
+		<!--<input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Sign In</label>-->
+		<input id="tab-2" type="radio" name="tab" class="sign-up">
+		<label for="tab-2" class="tab">Continue Registration</label>
+
+		<div class="login-form">
+			
+			<div class="sign-up-htm">
+				<!--<div class="group">
+					<label for="user" class="label">First name</label>
+					<input id="user" type="text" class="input" required>
+				</div>-->
+
+				<form action="/log/lancer_info" method="POST">
+					{% csrf_token %}
+
+					<!-- if request.post['role'] == freelancer  -->
+					<div class="group" >
+						<p>Programing language:</p>
+						<input  type="checkbox" id="webfun" name="lan" value="webfun">
+						<label for="webfun"> WebFundamentals</label><br>
+						<input  type="checkbox" id="python" name="lan" value="python">
+						<label for="python"> Python</label><br>
+						<input  type="checkbox" id="java" name="lan" value="java">
+						<label for="java"> JAVA</label><br>
+						<input  type="checkbox" id="mern" name="lan" value="mern">
+						<label for="mern"> MERN</label><br><br>
+					</div>
+					<div class="group" >
+						<p>Education:</p>
+						<input  type="radio" id="MA" name="edu" value="MA">
+						<label for="MA"> Masters or higher</label>
+						<input  type="radio" id="BA" name="edu" value="BA">
+						<label for="BA"> Bachelor's or equivalent</label>
+						<input  type="radio" id="bootcamp" name="edu" value="bootcamp">
+						<label for="bootcamp"> Bootcamps</label>
+						<input  type="radio" id="selfstudy" name="edu" value="selfstudy">
+						<label for="selfstudy"> Self study</label><br>
+					</div>
+
+					<div class="group">
+						<p>A breif description about your skills and experiencs:</p>
+						<input  type="text" name="desc" class="input" placeholder="tell us about yourself...">
+					</div>
+
+					<!-- <p> endif </p> -->
+
+					<div class="group">
+						<p>Upload your photo</p>
+						<input  type="file"  name="filename">
+					</div>
+					
+					
+					<div class="group">
+						<input type="submit" class="button" value="Submit">
+					</div>
+			    </form>
+				<div class="hr"></div>
+				<!-- <div class="foot-lnk">
+					<label for="tab-1">Already Member?</a>
+				</div> -->
+			</div>
+		</div>
+	</div>
+</div>
+    
+</body>
+</html>
+
+
+
+

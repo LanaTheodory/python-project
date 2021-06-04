@@ -33,10 +33,10 @@
 
     <div class="con" style="margin: 0 auto; height: auto;width: 1111px;">
         <header style="display:flex; justify-content: space-between; margin: 15px; position: sticky;">
-            <h2> Welcome {{first name}}{{last name}}</h2>
+            <h2> Welcome {first name}{last name}</h2>
             <div class="class1">
                 <p><a class="link-primary" href="/wallfeed.html">WallFeed</a> |<a class="link-primary"
-                        href="/communtity">Communtiy</a> | <a class="link-danger" href="/logout">Logout</a> </p>
+                        href="/main/communtity">Communtiy</a> | <a class="link-danger" href="/log/logout">Logout</a> </p>
             </div>
         </header>
         <hr><br>
@@ -68,25 +68,25 @@
             </div>
             -->
             <div>
-            	{% for sender in all_senders %}
+            	{} for sender in all_senders }
             	<form action="Add-reply" method="POST">
             	<div class="massenger">
 				  <div class="title">
 				    <div class="img-profile">
 				      <img src="{{sender.img}}" />
 				    </div>
-				    <span>{{sender.first_name}}</span>
+				    <span>{sender.first_name}</span>
 				    <i class="fas fa-lg fa-ellipsis-v"></i>
 				  </div>
 				  <div class="massenger-box">
 
 				    <div class="message-wrapper">
 				      <div class="perview-box-msg">
-				      	{%for msg in all_massges%}
+				      	{for msg in all_massges}
 				        <div class="mrm-msg">
-				          {{msg.Massage}}
+				          {msg.Massage}
 				        </div>
-				        {%endfor%}
+				        {endfor}
 				      </div>
 				    </div>
 
@@ -102,7 +102,7 @@
 				  </div>
 				</div>
 				</form>
-				{% endfor %}
+				{endfor }
             </div>
             <!-- <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
 
