@@ -17,8 +17,8 @@ def create_user(request):
         
         password = request.POST['password-signup']
         
-        # pw_hash = bcrypt.hashpw(
-        # password.encode(), bcrypt.gensalt()).decode()
+        pw_hash = bcrypt.hashpw(
+        password.encode(), bcrypt.gensalt()).decode()
         errors= User.objects.basic_validator(request.POST)
         if len(errors)>0:
     
@@ -31,7 +31,7 @@ def create_user(request):
         else:
   
             request.session['email']=request.POST['email']
-            user= createuser(request.POST,password)
+            user= createuser(request.POST,pw_hash)
             request.session["user_id"]=user.id
             if request.POST['role'] == 'client':
                
