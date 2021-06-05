@@ -13,62 +13,36 @@
         <link rel="jsdelivr" href="{% static 'js/test.js'%}">
 
     <style>
-        html,
-        body,
-        h1,
-        h2,
-        h3,
-        h4,
-        h5 {
+        html,body,h1, h2,h3,h4,h5 {
             font-family: "Open Sans", sans-serif
         }
     </style>
+
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Freelancer</title>
+    <title>Profile</title>
 </head>
 
 <body class="w3-theme-l5">
 
     <div class="con" style="margin: 0 auto; height: auto;width: 1111px;">
         <header style="display:flex; justify-content: space-between; margin: 15px; position: sticky;">
-           <h2> Welcome {{asd.first_name}} {{asd.last_name}}</h2>
+           <h2> Welcome {{request.session.first}}  {{request.session.last}}</h2>
             <div class="class1">
                 <p><a class="link-primary" href="/main/wallfeed">WallFeed</a> |<a class="link-primary"
                         href="/main/community">Communtiy</a> | <a class="link-danger" href="/log/logout">Logout</a> </p>
             </div>
         </header>
+
+      
         <hr><br>
-        <!-- Middle Column -->
-        <div class="w3-col m7">
+        
 
-
-            <!--
-            <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
-                <span class="w3-right w3-opacity">{{msg.update_at}}</span>
-                <h4> Massage From {{user.first}}{{user.last}}</h4><br>
-                <hr class="w3-clear">
-               <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
-                    et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                    aliquip ex ea commodo consequat.</p> 
-                <p></p>
-
-                <div class="w3-row-padding" style="margin:0 -16px">
-
-                </div>
-                <div class="input-group mb-3">
-                    <form action="Add-reply" method="POST">
-
-                        <input type="text" name="Reply" class="form-control" aria-label="Example text with button addon"
-                            aria-describedby="button-addon1">
-                            <button class="btn btn-outline-secondary w3-button w3-theme" type="submit" id="Comment-addon1">Reply</button>
-                    </form>
-                </div>
-            </div>
-            -->
+            {% if request.session.user_id == asd.id %}
+        
             <div>
-            	{} for sender in all_senders }
+         
             	<form action="Add-reply" method="POST">
             	<div class="massenger">
 				  <div class="title">
@@ -102,27 +76,24 @@
 				  </div>
 				</div>
 				</form>
-				{endfor }
-            </div>
-            <!-- <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
+			
+        {%  endif %}
 
-                <span class="w3-right w3-opacity">{{msg.update_at}}</span>
-                <h4>{{user.first}}{{user.last}}</h4><br>
-                <hr class="w3-clear">
-                <p>Have you seen this?</p>
+{% if request.session.user_id != asd.id %}
 
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
-                    et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                    aliquip ex ea commodo consequat.</p>
-                <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i>
-                     Like</button>
-                <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i>
-                     Comment</button>
-            </div> -->
+<h1> {img}  {{asd.first_name}} {{asd.last_name}}'s profile</h1>
+<h4>Description: </h4>
+<p>{{info.description}}</p>
+<h4>Languages:</h4>
+<p>{{info.language}}</p>
+<h4>Education</h4>
+<p>{{info.education}}</p>
 
-            <!-- End Middle Column -->
+<!-- send a message form here-->
+{% endif %}
 
-        </div>
+
+
 </body>
 
 </html>

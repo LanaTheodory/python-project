@@ -27,7 +27,8 @@ def community(request):
 def freelancer_profile(request,i):
     context = {
         'lancer' : thislancer(i),
-        'asd' : User.objects.get(id = i)
+        'asd' : User.objects.get(id = i),
+        'info' : get_info(i)
     }
     
     return render(request, 'freelancer-page2.html', context)

@@ -104,4 +104,8 @@ def log(email):
 def get_user(id):
     return User.objects.get(id=id)
 
+def get_info(id):
+    
+    return Lancer_info.objects.get(lancer = id)
+
 
