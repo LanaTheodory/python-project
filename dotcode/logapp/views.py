@@ -33,6 +33,8 @@ def create_user(request):
             request.session['email']=request.POST['email']
             user= createuser(request.POST,pw_hash)
             request.session["user_id"]=user.id
+            request.session['first'] = user.first_name
+            request.session['last'] = user.last_name 
             if request.POST['role'] == 'client':
                
                 return redirect('/main/community')

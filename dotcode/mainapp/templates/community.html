@@ -16,9 +16,14 @@
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
 		<!-- AOS 2.3.1 jQuery plugin CSS (Animations) -->
 		<!-- <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"> -->
+		<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+		<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+
 		<!-- FontAwesome CSS -->
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 		<!-- Startup 3 CSS (Styles for all blocks) -->
+	
 					<link href="{% static 'css/style.css'%}" rel="stylesheet" />
 				<!-- jQuery 3.3.1 -->
 		<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
@@ -34,9 +39,28 @@
 			</div>
 			<div class="col-lg-6" data-aos-duration="600" data-aos="fade-down" data-aos-delay="0">
 				
-				<a href="/main/wallfeed" class="link color-main mx-15">Wallfeed</a>
-				<a href="/main/freelancer_profile/{{request.session.user_id}}" class="link color-main mx-15">Profile</a>
-				<a href="/log/logout" class="link color-main mx-15">Logout</a>
+				<a data-aos-duration="600" data-aos="fade-down" data-aos-delay="0" href="/main/profile/{{request.session.user_id}}" class="link color-main mx-15">Profile</a>
+				<a data-aos-duration="600" data-aos="fade-down" data-aos-delay="0" href="/log/logout" class="link color-main mx-15">Logout</a>
+				<a data-aos-duration="600" data-aos="fade-down" data-aos-delay="0" href="/main/wallfeed" class="link color-main mx-15">Wallfeed</a>
+<br><br>
+{% if users.role.role == "client" %}
+			<form class="searchform" action="/main/search_bar" method="POST">
+				{% csrf_token %}
+				
+					<input  data-aos-duration="600" data-aos="fade-down" data-aos-delay="0" class="border  " type="text" name="search" id="search" placeholder="search for freelancers ...">
+					<button > Search </button>
+				</form>
+				<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+				<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+				<script>
+					$(function () {
+						$("#search").autocomplete({
+							source: "{% url 'autocomplete' %}",
+							minLength: 1
+						});
+					});
+				</script>
+				{% endif %}
 				
 			</div>
 			<div class="mt-20 mt-lg-0 col-lg-3 d-flex flex-wrap justify-content-center justify-content-lg-end align-items-center" data-aos-duration="600" data-aos="fade-down" data-aos-delay="300">
@@ -48,7 +72,7 @@
 
 {% if users.role.role == "client" %}
 
-<section class="content_2 bg-light pt-105 pb-95">
+<!-- <section class="content_2 bg-light pt-105 pb-95">
 	<div class="container px-xl-0 text-center">
 		<div class="row justify-content-center">
 			<div class="col-xl-8 col-lg-10" data-aos-duration="600" data-aos="fade-down" data-aos-delay="0">
@@ -62,7 +86,7 @@
 			</div>
 		</div>
 	</div>
-</section>
+</section> -->
 
 <!-- Showcase 2 -->
 
@@ -73,17 +97,25 @@
 			<div class="col-xl-8 col-lg-10">
 				<h2 class="small" data-aos-duration="600" data-aos="fade-down" data-aos-delay="0">Our Freelancers</h2>
 				<div class="mt-15 mb-25 f-22 color-heading text-adaptive" data-aos-duration="600" data-aos="fade-down" data-aos-delay="300">
-					You can choose freelancers with different experriences and various skills to help you with your code!
+					You can choose freelancers with different experiences and various skills to help you with your code!
 				</div>
+				<div class="row">
 					{% for lancer in all_users %}
 					{% if lancer.role.role == "freelancer"%}
 				
-					<a  href="/main/freelancer_profile/{{lancer.id}}" class="text-dark">
-					<p>{{lancer.first_name}}</p> </a>
+	
+						<div class="col-md-4 col-sm-6" data-aos-duration="600"  data-aos-delay="0" data-aos="flip-left">
+							<a href="/main/freelancer_profile/{{lancer.id}}" class="mt-50 link color-main">
+								<img srcset="i/showcase_2_img_1@2x.jpg 2x" src="http://127.0.0.1:5502/mainapp/templates/comunity/portfolio/i/showcase_2_img_1.jpg" class="radius10 img-fluid" alt=""/>
+								<div class="mt-20 mb-15 f-22 title" class="text-dark">
+									{{lancer.first_name}}</div>
+								<!-- <div class="color-heading f-14 semibold text-uppercase sp-20">Nicole Milton</div> -->
+							</a>
+						</div>
+					
 					{% endif %}
-				
-
-					{% endfor %}
+			     	{% endfor %}
+				</div>
 			
 			</div>
 		</div>
@@ -95,7 +127,7 @@
 <section >
 		<form action="/main/problem" method="POST">
 			{% csrf_token %}
-			<h5>Type your problem below in order to be answered by one of our experienced freelancers</h5>
+			<h5 data-aos-duration="600" data-aos="fade-down" data-aos-delay="0">Type your problem below in order to be answered by one of our experienced freelancers</h5>
 			<br>
 			<input  class="form-control" type="text" name="problem" placeholder="what is your question?">
 			<br>
@@ -121,7 +153,7 @@
 					<!-- <div class="col-lg-3 col-md-5 col-sm-6 mb-70 mb-lg-0 block" data-aos-duration="600" data-aos="fade-down" data-aos-delay="0"> -->
 			{% for problem in all_problems %}
 			<p class="btn btn-outline-info ">
-			 <a  href="/main/freelancer_profile/{{problem.user_problem.id}}" class="text-dark">View {{problem.user_problem.first_name}} {{problem.user_problem.last_name}}'s problem : {{problem.problem}} </a>
+			 <a  href="/main/client_profile/{{problem.user_problem.id}}" class="text-dark">View {{problem.user_problem.first_name}} {{problem.user_problem.last_name}}'s problem : {{problem.problem}} </a>
 			
 			</p>
 
@@ -227,7 +259,7 @@
 	</div>
 </footer> -->
 <!-- forms alerts -->
-<div class="alert alert-success alert-dismissible alert-form-success" role="alert">
+<!-- <div class="alert alert-success alert-dismissible alert-form-success" role="alert">
 	<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 	Thanks for your message!
 </div>
@@ -237,18 +269,20 @@
 </div>
 <div class="alert alert-danger alert-dismissible alert-form-error" role="alert">
 	<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	An error occurred while sending data :(
-</div>
+	An error occurred while sending data :( -->
+<!-- </div> -->
 <!-- popup with video -->
-<div class="overlay"></div>
+<!-- <div class="overlay"></div>
 
 <div class="video_popup">
 	<a class="close">
 		<img srcset="i/close_white@2x.png 2x" src="i/close_white.png" alt="" />
 	</a>
 	<div class="d-flex align-items-center justify-content-center w-full h-full iframe_container"></div>
-</div>
-
+</div> -->
+<script>
+	AOS.init();
+  </script>
 
 
 <!-- Bootstrap 4.3.1 JS -->

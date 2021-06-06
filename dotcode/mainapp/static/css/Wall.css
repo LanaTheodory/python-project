@@ -1,6 +1,10 @@
 body{
     margin-top:20px;
-    background:#ebeef0;
+    /* background-image: linear-gradient(to bottom, rgba(19, 18, 18, 0.829) , rgba(0, 17, 27, 0.541), rgba(22, 21, 21, 0.63)); */
+    /* background:#ebeef0; */
+    /* background-image: url("https://sudosecurity.org/content/images/2021/05/technology-geometric-background_29971-339-1.jpg") ; */
+    /* background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 75%, #000 100%),  url("https://ak0.picdn.net/shutterstock/videos/17646400/thumb/1.jpg"); */
+
 }
 
 .img-sm {

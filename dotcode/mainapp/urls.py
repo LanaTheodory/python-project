@@ -11,6 +11,11 @@ urlpatterns = [
     path('/create_reply/<int:comment_id>',views.create_reply),
     # path('/create_messages',views.create_messages),
     path('/problem',views.create_problem),
+    path('/autocomplete', views.autocomplete , name='autocomplete'),
+    path('/profile/<int:i>',views.profile),
+    path('/client_profile/<int:i>',views.client_profile),
+    path('/search_bar',views.search_bar),
+
     
   
 ]

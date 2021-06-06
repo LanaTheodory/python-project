@@ -1,6 +1,9 @@
 from django.shortcuts import redirect, render
+from django.http import JsonResponse
+
 from .models import *
 from logapp import views
+
 
 
 def wallfeed(request):
@@ -25,10 +28,13 @@ def community(request):
 #     pass
 
 def freelancer_profile(request,i):
+
+    
     context = {
-        'lancer' : thislancer(i),
         'asd' : User.objects.get(id = i),
-        'info' : get_info(i)
+        'info' : get_info(i),
+        
+      
     }
     
     return render(request, 'freelancer-page2.html', context)
@@ -67,4 +73,49 @@ def create_problem(request):
 
     return redirect('/main/community')
 
+def autocomplete(request):
+    if 'term' in request.GET:
+        x = User.objects.filter(first_name__istartswith=request.GET.get('term'))
+        names = list()
 
+    
+    
+        for user in x:
+            print("mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm")
+            print(user.role.role)
+            if user.role.role == "freelancer":
+         
+                names.append(f'{user.first_name} {user.last_name}')
+            return JsonResponse(names, safe=False)
+    return redirect('/main/community')
+
+def profile(request, i ):
+    context = {
+     
+        'lancer' : thislancer(i),
+        'asd' : User.objects.get(id = i),
+
+    }
+
+    return render(request, 'freelancer-page2.html', context)    
+
+def client_profile(request, i ):
+    context = {
+     
+        'lancer' : thislancer(i),
+        'asd' : User.objects.get(id = i),
+        'all_problems': allproblems(),
+        'info' : get_info(i),
+
+    }
+
+    return render(request, 'freelancer-page2.html', context)    
+
+def search_bar(request):
+    x = request.POST['search']  
+    z = x.split()
+    name = z[0]
+    y = User.objects.filter(first_name = name)
+    i = y[0].id
+
+    return redirect('/main/client_profile/' + str(i))

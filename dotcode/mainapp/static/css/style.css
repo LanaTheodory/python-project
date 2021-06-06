@@ -26,7 +26,14 @@ body {
   line-height: 26px;
   color: #0d0d0d;
   -webkit-font-smoothing: antialiased;
+  /* background-image: url("https://media.istockphoto.com/vectors/vector-binary-code-white-seamless-background-big-data-and-programming-vector-id856692422?k=6&m=856692422&s=170667a&w=0&h=ZfhxSlCSuFnFoekIMb1_cwIAu9Ajfk2R5bTGdGdP2Ds=") ; */
+  /* background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 75%, #000 100%), url("../assets/img/bg-masthead.jpg"); */
+}
 
+.searchform{
+  
+  display: inline-block;
+  
 }
 
 body.dev {

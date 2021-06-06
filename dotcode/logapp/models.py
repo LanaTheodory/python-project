@@ -106,6 +106,7 @@ def get_user(id):
 
 def get_info(id):
     
-    return Lancer_info.objects.get(lancer = id)
+    x= Lancer_info.objects.get(lancer = id)
+    return x
 
 

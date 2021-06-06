@@ -49,7 +49,7 @@
 				    <div class="img-profile">
 				      <img src="{{sender.img}}" />
 				    </div>
-				    <span>{sender.first_name}</span>
+				    <span>{{asd.first_name}}</span>
 				    <i class="fas fa-lg fa-ellipsis-v"></i>
 				  </div>
 				  <div class="massenger-box">
@@ -81,16 +81,30 @@
 
 {% if request.session.user_id != asd.id %}
 
+{% if asd.role.role == "freelancer" %}
+
 <h1> {img}  {{asd.first_name}} {{asd.last_name}}'s profile</h1>
 <h4>Description: </h4>
 <p>{{info.description}}</p>
-<h4>Languages:</h4>
+<h4>Language:</h4>
 <p>{{info.language}}</p>
+
+
 <h4>Education</h4>
 <p>{{info.education}}</p>
 
 <!-- send a message form here-->
+{% else %}
+<h1> {img}  {{asd.first_name}} {{asd.last_name}}'s profile</h1>
+<p>Problems:</p>
+{% for problem in all_problems%}
+{% if problem.user_problem.id == asd.id %}
+<p>{{problem.problem}}</p>
 {% endif %}
+{% endfor %}
+{% endif %}
+{% endif %}
+
 
 
 
