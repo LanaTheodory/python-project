@@ -1,5 +1,6 @@
 from django.db import models
 from django.db.models.base import Model
+from django.http import request
 from django.shortcuts import render
 from django.db import models
 import re
@@ -59,11 +60,17 @@ class User(models.Model) :
     objects = BlogManager()
 
 
+class Language (models.Model):
+    name =models.CharField(max_length=35)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now_add=True)
+
+
 class Lancer_info(models.Model) :
-    language = models.CharField(max_length=50)
     education = models.TextField()
     description = models.TextField()
     lancer = models.OneToOneField(User,on_delete=models.CASCADE, primary_key=True,)
+    lan=models.ManyToManyField(Language,related_name="lancer",null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
     objects = BlogManager()
@@ -85,10 +92,25 @@ def createuser(postData,password):
     # return user
 
 def lancer_info(postData, user_id):
-
-    lancer = Lancer_info.objects.create(description=postData["desc"], 
-    education=postData["edu"],language=postData["lan"], lancer = User.objects.get(id= user_id))
-    return lancer
+    
+    
+    try:
+        thisLancer = Lancer_info.objects.create(description=postData["desc"], education=postData["edu"], lancer = User.objects.get(id= user_id))
+    except:
+        print("this user lancer is already there")
+        allLancers = Lancer_info.objects.all()
+        for lancer in allLancers:
+            if lancer.lancer.id == user_id:
+                thisLancer = lancer
+                print(thisLancer,'4567896546546546546546')
+        
+        print(allLancers,"\]\]\]\\]\]\]\]")
+    for x in range(1,len(postData)):
+        if x in postData:
+            print(postData[f'{x}'],'////////////////////////')
+            language=Language.objects.get(id = x)
+            thisLancer.lan.add(language)
+    return thisLancer
 
 def thislancer(id):
     return User.objects.get(id=id)
@@ -109,4 +131,7 @@ def get_info(id):
     x= Lancer_info.objects.get(lancer = id)
     return x
 
-
+def language(id):
+    info=get_info(id)
+    return info.lan.all()
+    

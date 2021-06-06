@@ -31,14 +31,21 @@
 					<!-- if request.post['role'] == freelancer  -->
 					<div class="group" >
 						<p>Programing language:</p>
-						<input  type="checkbox" id="webfun" name="lan" value="webfun">
-						<label for="webfun"> WebFundamentals</label><br>
+						{%  for i in all_lan %}
+
+
+						<input  type="checkbox" id="webfun" name="{{i.id}}" value="{{i.name}}">
+						
+					     <label for="webfun"> {{i.name}}</label><br>
+
+						{% endfor %}
+						<!-- <label for="webfun"> WebFundamentals</label><br>
 						<input  type="checkbox" id="python" name="lan" value="python">
 						<label for="python"> Python</label><br>
 						<input  type="checkbox" id="java" name="lan" value="java">
 						<label for="java"> JAVA</label><br>
-						<input  type="checkbox" id="mern" name="lan" value="mern">
-						<label for="mern"> MERN</label><br><br>
+						<input  type="checkbox" id="mern" name="lan" value="mern"> -->
+						
 					</div>
 					<div class="group" >
 						<p>Education:</p>

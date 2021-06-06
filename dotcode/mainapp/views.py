@@ -28,11 +28,12 @@ def community(request):
 #     pass
 
 def freelancer_profile(request,i):
-
+    lang=language(i)
     
     context = {
         'asd' : User.objects.get(id = i),
         'info' : get_info(i),
+        'lang' : lang,
         
       
     }

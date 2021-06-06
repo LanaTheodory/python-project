@@ -44,16 +44,19 @@ def create_user(request):
     
 
 def lancer_reg(request):
+    context={
+        "all_lan":Language.objects.all()
+    }
 
-    return render(request, "login-reg.html")
+    return render(request, "login-reg.html",context)
 
 
 def info(request):
     if request.method == 'POST':
-        
+        # lan_id=request.POST.getlist("lan_id[]")
         errors= User.objects.lancer_validator(request.POST)
         if len(errors)>0:
-            for key,value in errors.item():
+            for key,value in errors.items():
                 messages.error(request,value)
                 return redirect("/log/lancer_reg")
         else:

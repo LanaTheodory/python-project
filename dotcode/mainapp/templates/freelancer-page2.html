@@ -87,7 +87,7 @@
 <h4>Description: </h4>
 <p>{{info.description}}</p>
 <h4>Language:</h4>
-<p>{{info.language}}</p>
+<p>{% for i in lang %}{{i.name}}<br>{% endfor %}</p>
 
 
 <h4>Education</h4>
