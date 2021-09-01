@@ -70,7 +70,7 @@ To do:
 
 ## Contact
 emails: ahmad11213731@gmail.com
-ahmadlanatheodory@gmail.com
+lanatheodory@gmail.com
 
 
 
